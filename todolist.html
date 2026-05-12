@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-do list</title>
+        <style>
+            .center{
+                text-align:center;
+            }
+            .left{
+                text-align:left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <h2>To-Do list (patent pending)</h2>
+                <ul id="demo"><button onclick="clearlist()">Reset</button><br><br></ul>
+            <form onsubmit="addtolist();return false">
+                <label for="list">Enter list item here: </label>
+                <input type="text" id="list" name="list">
+                <input type="submit" name="list">
+                <button type="reset">Clear</button>
+            </form>
+        </div>
+        <script>
+            function addtolist(){
+                let item = document.getElementById("list").value;
+                document.getElementById("demo").innerHTML += "<li style='background-color:white'>"+item+" <button onclick=\"this.style.backgroundColor='grey'\">Done</button>"+"</li>";
+            }
+            function clearlist(){
+                document.getElementById("demo").innerHTML="<button onclick='clearlist()'>Reset</button><br><br>"
+            }
+        </script>
+    </body>
+</html>
