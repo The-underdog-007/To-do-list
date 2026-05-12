@@ -9,23 +9,47 @@
             .left{
                 text-align:left;
             }
+            .square{
+                width:500px;
+                height:400px;
+                border:2px solid black;
+                padding: 10px;
+                overflow: auto;
+                margin: auto;
+                box-sizing: border-box;
+                margin-top: 100px;
+            }
+            .innersquare{
+                width:450px;
+                height:250px;
+                border:2px solid black;
+                padding: 10px;
+                overflow: auto;
+                margin: auto;
+                box-sizing: border-box;                
+            }
         </style>
     </head>
-    <body>
+    <body style="background-color: #50586C;">
         <div class="center">
-            <h2>To-Do list</h2>
-            <button onclick="clearlist()">Reset</button><br>
-            <ul id="demo" style="padding-left:0;display:inline-block" class="left"></ul>
-            <form onsubmit="addtolist();return false">
-                <label for="list"></label>
-                <input type="text" id="list" name="list">
-            </form>
+            <div class="square" style="background-color: #DCE2F0;">
+                <h1 style="font-size: 50px;margin-bottom: 10px;">To-Do list</h1>
+                <div class="innersquare">
+                    <ul id="demo" style="padding-left:0;display:inline-block" class="left"></ul>
+                    <form onsubmit="addtolist();return false">
+                        <label for="list"></label>
+                        <input type="text" id="list" name="list">
+                    </form>
+                    <br>
+                    <button onclick="clearlist()" style="background-color: #50586C; color:white">Reset</button><br>
+                </div>
+            </div>
         </div>
         <script>
             function addtolist(){
                 let item = document.getElementById("list").value;
                 document.getElementById("demo").innerHTML += "<li style='display:flex;justify-content:space-between'>"+
-                    "<span>"+
+                    "<span style='overflow-wrap:break-word; max-width:400px'>"+
                     "<input type=checkbox onchange=changeColor(this)>"+
                     item+
                     "</span>"+
@@ -37,8 +61,8 @@
                 document.getElementById("demo").innerHTML=""
             }
             function changeColor(button){
-                if(button.checked){button.parentElement.style.backgroundColor='grey';button.parentElement.parentElement.children[1].style.backgroundColor='grey'}
-                else{button.parentElement.style.backgroundColor='white';button.parentElement.parentElement.children[1].style.backgroundColor=''};
+                if(button.checked){button.parentElement.style.backgroundColor='#50586C';button.parentElement.parentElement.children[1].style.backgroundColor='#50586C'}
+                else{button.parentElement.style.backgroundColor='#DCE2F0';button.parentElement.parentElement.children[1].style.backgroundColor=''};
             }
         </script>
     </body>
