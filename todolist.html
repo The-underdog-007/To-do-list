@@ -13,22 +13,26 @@
     </head>
     <body>
         <div class="center">
-            <h2>To-Do list (patent pending)</h2>
-                <ul id="demo"><button onclick="clearlist()">Reset</button><br><br></ul>
+            <h2>To-Do list</h2>
+            <button onclick="clearlist()">Reset</button>
+            <ul id="demo" style="padding-left:0"></ul>
             <form onsubmit="addtolist();return false">
-                <label for="list">Enter list item here: </label>
+                <label for="list"></label>
                 <input type="text" id="list" name="list">
-                <input type="submit" name="list">
-                <button type="reset">Clear</button>
             </form>
         </div>
         <script>
             function addtolist(){
                 let item = document.getElementById("list").value;
-                document.getElementById("demo").innerHTML += "<li style='background-color:white'>"+item+" <button onclick=\"this.style.backgroundColor='grey'\">Done</button>"+"</li>";
+                document.getElementById("demo").innerHTML += "<li style='display:inline-block'>"+
+                    "<input type=checkbox onchange=\"if(this.checked){this.parentElement.style.backgroundColor='grey'}else{this.parentElement.style.backgroundColor='white'}\">"+
+                    item+
+                    " <button onclick=\"this.parentElement.nextSibling.remove();this.parentElement.remove()\">x</button>"+
+                    "</li>"+"<br>";
+                document.getElementById("list").value="";
             }
             function clearlist(){
-                document.getElementById("demo").innerHTML="<button onclick='clearlist()'>Reset</button><br><br>"
+                document.getElementById("demo").innerHTML=""
             }
         </script>
     </body>
