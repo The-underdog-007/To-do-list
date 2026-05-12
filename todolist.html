@@ -14,8 +14,8 @@
     <body>
         <div class="center">
             <h2>To-Do list</h2>
-            <button onclick="clearlist()">Reset</button>
-            <ul id="demo" style="padding-left:0"></ul>
+            <button onclick="clearlist()">Reset</button><br>
+            <ul id="demo" style="padding-left:0;display:inline-block" class="left"></ul>
             <form onsubmit="addtolist();return false">
                 <label for="list"></label>
                 <input type="text" id="list" name="list">
@@ -24,15 +24,21 @@
         <script>
             function addtolist(){
                 let item = document.getElementById("list").value;
-                document.getElementById("demo").innerHTML += "<li style='display:inline-block'>"+
-                    "<input type=checkbox onchange=\"if(this.checked){this.parentElement.style.backgroundColor='grey'}else{this.parentElement.style.backgroundColor='white'}\">"+
+                document.getElementById("demo").innerHTML += "<li style='display:flex;justify-content:space-between'>"+
+                    "<span>"+
+                    "<input type=checkbox onchange=changeColor(this)>"+
                     item+
-                    " <button onclick=\"this.parentElement.nextSibling.remove();this.parentElement.remove()\">x</button>"+
-                    "</li>"+"<br>";
+                    "</span>"+
+                    "<button onclick=\"this.parentElement.remove()\" style='margin-left:10px'>x</button>"+
+                    "</li>";
                 document.getElementById("list").value="";
             }
             function clearlist(){
                 document.getElementById("demo").innerHTML=""
+            }
+            function changeColor(button){
+                if(button.checked){button.parentElement.style.backgroundColor='grey';button.parentElement.parentElement.children[1].style.backgroundColor='grey'}
+                else{button.parentElement.style.backgroundColor='white';button.parentElement.parentElement.children[1].style.backgroundColor=''};
             }
         </script>
     </body>
