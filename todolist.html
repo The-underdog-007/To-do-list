@@ -41,20 +41,23 @@
                         <input type="text" id="list" name="list">
                     </form>
                     <br>
-                    <button onclick="clearlist()" style="background-color: #50586C; color:white">Reset</button><br>
                 </div>
             </div>
+            <button onclick="clearAll()" style="background-color:#DCE2F0; margin-top:10px ">Clear all</button>
+            <button onclick="changeAll()" style="background-color:#DCE2F0; margin-top:10px ">Mark all</button>
+            <button onclick="clearlist()" style="background-color: #DCE2F0;">Reset</button><br>
         </div>
         <script>
             function addtolist(){
                 let item = document.getElementById("list").value;
-                document.getElementById("demo").innerHTML += "<li style='display:flex;justify-content:space-between'>"+
+                document.getElementById("demo").insertAdjacentHTML("beforeend",
+                    "<li style='display:flex;justify-content:space-between'>"+
                     "<span style='overflow-wrap:break-word; max-width:400px'>"+
                     "<input type=checkbox onchange=changeColor(this)>"+
                     item+
                     "</span>"+
                     "<button onclick=\"this.parentElement.remove()\" style='margin-left:10px'>x</button>"+
-                    "</li>";
+                    "</li>");
                 document.getElementById("list").value="";
             }
             function clearlist(){
@@ -63,6 +66,22 @@
             function changeColor(button){
                 if(button.checked){button.parentElement.style.backgroundColor='#50586C';button.parentElement.parentElement.children[1].style.backgroundColor='#50586C'}
                 else{button.parentElement.style.backgroundColor='#DCE2F0';button.parentElement.parentElement.children[1].style.backgroundColor=''};
+            }
+            function changeAll(){
+                let y=document.getElementById("demo").children;
+                for( let z = 0; z<y.length;z++){
+                    let x=document.getElementById("demo").children[z].children[0].children[0];
+                    x.checked=true;
+                    changeColor(x);
+                }
+            }
+            function clearAll(){
+                let y=document.getElementById("demo").children;
+                for( let z = 0; z<y.length;z++){
+                    let x=document.getElementById("demo").children[z].children[0].children[0];
+                    x.checked=false;
+                    changeColor(x);
+                }
             }
         </script>
     </body>
